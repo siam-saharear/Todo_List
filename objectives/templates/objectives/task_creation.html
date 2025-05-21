@@ -1,0 +1,9 @@
+{% extends "objectives/base.html" %}
+
+{% block page-input %}
+    <form action="" method="post" class="input_form">
+        {% csrf_token %}
+        {{form}}
+        <button type="submit">Create Task</button>
+    </form>
+{% endblock page-input %}

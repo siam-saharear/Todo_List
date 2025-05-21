@@ -1,0 +1,10 @@
+{% extends "objectives/base.html" %}
+
+{% block page-input %}
+    <form action="" method="post" class="input_form">
+        {% csrf_token %}
+        {{form}}
+
+        <button type="submit">Create Category</button>
+    </form>
+{% endblock page-input %}

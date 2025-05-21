@@ -1,0 +1,64 @@
+{% extends "objectives/base.html" %}
+
+{% block page-input %}
+{% endblock page-input %}
+
+{% block page-output %}
+    <div id="individual_task_category" class="category">
+        <h2>Individual Tasks</h2>
+        {% if individual_tasks %}
+            {% for task in individual_tasks  %}
+                <form method="post" action="/change_status/{{task.uuid}}">
+                    {% csrf_token %}
+                    <label class="task">
+                        {% if task.status %}
+                            <input type="checkbox" name="status" onchange="this.form.submit()" checked>
+                            {{task.name}}
+                        {% else %}
+                            <input type="checkbox" name="status" onchange="this.form.submit()" >
+                            {{task.name}}
+                        {% endif %}
+                    </label>
+                </form>
+                
+            {% endfor %}
+
+            <a href="/task_creation/{{category.category.uuid}}">
+                <button>
+                    ➕ new task
+                </button>
+            </a>
+        {% else %}
+            
+            <div>
+                Todo list is empty
+            </div>
+        {% endif %}
+    </div>
+        
+    <div id="all_task_category" >
+        {% for category in categorized_tasks %}
+            <div class="category">
+                <h2>{{category.category}}</h2>
+                
+                {% if category.tasks != None %}
+                    {% for task in category.tasks %}
+                        <div class="task">
+                            <input type="checkbox" name="" id="{{task.uuid}}">
+                            <label for="{{task.uuid}}">{{task.name}}</label>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <h4>No tasks here</h4>
+                {% endif %}
+                
+                <a href="/task_creation/{{category.category.uuid}}">
+                    <button>
+                        ➕ new task
+                    </button>
+                </a>
+            </div>    
+        {% endfor %}
+    </div>
+    
+{% endblock page-output %}
