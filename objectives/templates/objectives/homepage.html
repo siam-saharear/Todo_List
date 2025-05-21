@@ -43,9 +43,19 @@
                 
                 {% if category.tasks != None %}
                     {% for task in category.tasks %}
-                        <div class="task">
-                            <input type="checkbox" name="" id="{{task.uuid}}">
-                            <label for="{{task.uuid}}">{{task.name}}</label>
+                        <div>
+                            <form method="post" action="/change_status/{{task.uuid}}">
+                                <div class="task">
+                                    {% csrf_token %}
+                                    {% if task.status %}
+                                    <input type="checkbox" onchange="this.form.submit()" checked>
+                                    {{task.name}}
+                                    {% else %}      
+                                    <input type="checkbox" onchange="this.form.submit()">
+                                    {{task.name}}
+                                    {% endif %}
+                                </div>
+                            </form> 
                         </div>
                     {% endfor %}
                 {% else %}
