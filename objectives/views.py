@@ -61,3 +61,15 @@ def change_status(request, task_uuid):
     print(f"task status changed to \n{task.status}")
     return redirect("base")
     
+    
+def edit_task(request, task_uuid):
+    print("came to function")
+    task = Task.objects.get(uuid = task_uuid)
+    
+    if request.method == "POST":
+        form = TaskForm(request.POST)
+        if form.is_valid():
+            form.save()
+    else:
+        form = TaskForm(instance=task)
+    return render(request, "objectives/edit_task.html", {"form":form})

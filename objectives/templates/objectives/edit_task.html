@@ -1,0 +1,11 @@
+{% extends "objectives/base.html" %}
+
+{% block page-input %}
+    <form method="POST">
+        {% csrf_token %}
+        {{form}}
+        <button type="submit">
+            make changes
+        </button>
+    </form>    
+{% endblock page-input %}
