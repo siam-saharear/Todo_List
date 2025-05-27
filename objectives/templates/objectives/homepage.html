@@ -61,9 +61,9 @@
                 
                 {% if category.tasks != None %}
                     {% for task in category.tasks %}
+                    <div class="task">
                         <div>
-                            <form method="post" action="/change_status/{{task.uuid}}">
-                                <div class="task">
+                            <form method="post" action="/change_status/{{task.uuid}}/">
                                     {% csrf_token %}
                                     {% if task.status %}
                                     <input type="checkbox" onchange="this.form.submit()" checked>
@@ -72,9 +72,25 @@
                                     <input type="checkbox" onchange="this.form.submit()">
                                     {{task.name}}
                                     {% endif %}
-                                </div>
-                            </form> 
+                                </form> 
+                            </div>
+                            
+                            
+                            <div>
+                                
+                                <a href="/edit_task/{{task.uuid}}/">
+                                    <button class="icon_button">
+                                        🖋️
+                                    </button>
+                                </a>
+                                <a href="/delete_task/{{task.uuid}}/">
+                                    <button class="icon_button">
+                                        🗑️
+                                    </button>
+                                </a>
+                            </div>
                         </div>
+
                     {% endfor %}
                 {% else %}
                     <h4>No tasks here</h4>
