@@ -72,3 +72,8 @@ def edit_task(request, task_uuid):
     else:
         form = TaskForm(instance=task)
     return render(request, "objectives/edit_task.html", {"form":form})
+
+def delete_task(request, task_uuid):
+    task = Task.objects.get(uuid = task_uuid)
+    task.delete()
+    return redirect("base")
