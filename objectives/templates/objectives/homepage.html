@@ -52,7 +52,15 @@
     {% if categorized_tasks %}
             {% for category in categorized_tasks %}
                 <div class="category">
-                    <h2>{{category.category}}</h2>
+                    <div class="task">
+                        <h2>{{category.category}}</h2>
+
+                        <a href="/delete_category/{{category.category.uuid}}/">
+                            <button class="icon_button">
+                                🗑️
+                            </button>
+                        </a>                    
+                    </div>
                     
                     {% if category.tasks != None %}
                         {% for task in category.tasks %}

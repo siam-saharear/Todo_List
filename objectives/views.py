@@ -77,3 +77,9 @@ def delete_task(request, task_uuid):
     task = Task.objects.get(uuid = task_uuid)
     task.delete()
     return redirect("base")
+
+
+def delete_category(request, category_uuid):
+    category = Category.objects.get(uuid = category_uuid)
+    category.delete()
+    return redirect("base")
