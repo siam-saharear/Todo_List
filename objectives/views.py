@@ -83,3 +83,7 @@ def delete_category(request, category_uuid):
     category = Category.objects.get(uuid = category_uuid)
     category.delete()
     return redirect("base")
+
+
+def calendar(request):
+    return redirect("base")
