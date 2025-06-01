@@ -1,1 +1,31 @@
 {% extends "objectives/base.html" %}
+{% block page-input %}
+
+{% endblock page-input %}
+
+{% block page-output %}
+    <div>
+        <table>
+            <tr>
+                <th>Mon</th>
+                <th>Tue</th>
+                <th>Wed</th>
+                <th>Thu</th>
+                <th>Fri</th>
+                <th>Sat</th>
+                <th>Sun</th>
+            </tr>
+
+            <tr>
+
+                {% for week in month_calendar%}
+                        {% for day in week%}
+                            {% if day is not 0 %}
+                                {{day}}
+                            {% endif %}
+                        {% endfor %}
+                {% endfor %}
+            </tr>
+        </table>
+    </div>
+{% endblock page-output %}

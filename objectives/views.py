@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 
 from django.utils.timezone import now
 
+import calendar
+from calendar import HTMLCalendar
 
 from .forms import *
 from .models import *
@@ -85,5 +87,12 @@ def delete_category(request, category_uuid):
     return redirect("base")
 
 
-def calendar(request):
-    return redirect("base")
+def calendar_func(request):
+    all_tasks = Task.objects.all().order_by("creation_time")
+    first_instance_month = all_tasks.first().creation_time.month
+    first_instance_year = all_tasks.first().creation_time.year
+    
+    month_calendar = calendar.monthcalendar(first_instance_year, first_instance_month)
+
+    return render(request, "objectives/calendar.html", {"month_calendar":month_calendar})
+    # return redirect("base")
