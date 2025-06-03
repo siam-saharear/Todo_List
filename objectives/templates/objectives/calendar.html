@@ -4,35 +4,35 @@
 {% endblock page-input %}
 
 {% block page-output %}
-    <div id="calendar-header">
-        <div id="calendar_header_year">
-            <div>
+    <div >
+        <div class="calendar_main" id="calendar_header_year">
+            <div class="calendar_header">
                 <a href="/calendar/{{previous_year}}/{{month}}">
                     <
                 </a>
             </div>
             
-            <div>
+            <div class="calendar_header">
                 {{year}}
             </div>
             
-            <div>
+            <div class="calendar_header">
                 <a href="/calendar/{{next_year}}/{{month}}">
                     >
                 </a>
             </div>
         </div>
         
-        <div id="calendar_header_month">
-            <div>
+        <div class="calendar_main" id="calendar_header_month">
+            <div class="calendar_header">
                 <a href="/calendar/{{year}}/{{previous_month}}">
                     <
                 </a>
             </div>
-            <div>
+            <div class="calendar_header">
                 {{month}}
             </div>
-            <div>
+            <div class="calendar_header">
                 <a href="/calendar/{{year}}/{{next_month}}">
                     >
                 </a>
@@ -43,7 +43,7 @@
 
 
 
-    <div id="calendar">
+    <div class="calendar">
         <table>
             <tr>
                 <th>Mon</th>
@@ -62,6 +62,7 @@
                     {% for day in week%}
                     <td>
                         {% if day is not 0 %}
+                        
                         {{day}}
                         {% else %}
                             *    
