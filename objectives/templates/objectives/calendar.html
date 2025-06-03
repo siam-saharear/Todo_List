@@ -7,7 +7,7 @@
     <div id="calendar-header">
         <div id="calendar_header_year">
             <div>
-                <a href="/{{year}}">
+                <a href="/calendar/{{previous_year}}/{{month}}">
                     <
                 </a>
             </div>
@@ -17,16 +17,26 @@
             </div>
             
             <div>
-                >
+                <a href="/calendar/{{next_year}}/{{month}}">
+                    >
+                </a>
             </div>
         </div>
         
         <div id="calendar_header_month">
-            <div><</div>
+            <div>
+                <a href="/calendar/{{year}}/{{previous_month}}">
+                    <
+                </a>
+            </div>
             <div>
                 {{month}}
             </div>
-            <div>></div>
+            <div>
+                <a href="/calendar/{{year}}/{{next_month}}">
+                    >
+                </a>
+            </div>
         </div>
         
     </div>

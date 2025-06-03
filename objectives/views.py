@@ -86,13 +86,69 @@ def delete_category(request, category_uuid):
     category.delete()
     return redirect("base")
 
+    
+def previous_next_month(month_index):
+    if month_index == 12 or month_index == 1:
+        if month_index == 12:
+            next_month = 1
+            previous_month = 11
+            year_change = 1
+            
+        elif month_index ==1:
+            previous_month == 12
+            next_month = 2
+            year_change = -1
+            
+    elif month_index != 12 or month_index != 1:
+        previous_month = month_index - 1
+        next_month = month_index + 1
+        year_change = 0
+        
+    else:
+        return ValueError()
+    return previous_month, next_month, year_change
+
+
+
+def previous_next_year(year, year_change):
+    if year_change == 0:
+        previous_year = year -1
+        next_year = year + 1
+
+
+
 
 def calendar_func(request, year=None, month=None):
-    calendar.Calendar(firstweekday=6)
+
     if year==None and month==None:
         year = now().year
         month = now().month
-    
+        
 
-    return render(request, "objectives/calendar.html", {"month":month,"year":year,"month_calendar":month_calendar})
+    elif year!=None and month!=None:
+        if month>12:
+            month = 1
+            year += 1
+        elif month <1:
+            month = 12
+            year -= 1
+
+    next_month = month + 1
+    previous_month = month - 1
+    
+    next_year = year + 1
+    previous_year = year -1
+        
+    month_calendar = calendar.monthcalendar(year, month)  
+    context = {"month":month,
+               "next_month":next_month,
+               "previous_month":previous_month,
+               
+               "year":year,
+               "next_year":next_year,
+               "previous_year":previous_year,
+               
+               "month_calendar":month_calendar}
+    return render(request, "objectives/calendar.html", context)
     # return redirect("base")
+    
