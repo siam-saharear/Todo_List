@@ -13,5 +13,6 @@ urlpatterns = [
     path("category_creation/", views.create_category, name="category_creation"),
     path("delete_category/<uuid:category_uuid>/", views.delete_category, name= "delete_category"),
     
-    path("calendar/", views.calendar_func, name="calendar")
+    path("calendar/", views.calendar_func, name="calendar"),
+    path("calendar/<int:year>/<int:month>", views.calendar_func, name="calendar"),
 ]

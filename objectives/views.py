@@ -87,12 +87,12 @@ def delete_category(request, category_uuid):
     return redirect("base")
 
 
-def calendar_func(request):
-    all_tasks = Task.objects.all().order_by("creation_time")
-    first_instance_month = all_tasks.first().creation_time.month
-    first_instance_year = all_tasks.first().creation_time.year
+def calendar_func(request, year=None, month=None):
+    calendar.Calendar(firstweekday=6)
+    if year==None and month==None:
+        year = now().year
+        month = now().month
     
-    month_calendar = calendar.monthcalendar(first_instance_year, first_instance_month)
 
-    return render(request, "objectives/calendar.html", {"month_calendar":month_calendar})
+    return render(request, "objectives/calendar.html", {"month":month,"year":year,"month_calendar":month_calendar})
     # return redirect("base")

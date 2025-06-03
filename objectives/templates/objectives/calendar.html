@@ -4,7 +4,36 @@
 {% endblock page-input %}
 
 {% block page-output %}
-    <div>
+    <div id="calendar-header">
+        <div id="calendar_header_year">
+            <div>
+                <a href="/{{year}}">
+                    <
+                </a>
+            </div>
+            
+            <div>
+                {{year}}
+            </div>
+            
+            <div>
+                >
+            </div>
+        </div>
+        
+        <div id="calendar_header_month">
+            <div><</div>
+            <div>
+                {{month}}
+            </div>
+            <div>></div>
+        </div>
+        
+    </div>
+
+
+
+    <div id="calendar">
         <table>
             <tr>
                 <th>Mon</th>
@@ -16,16 +45,22 @@
                 <th>Sun</th>
             </tr>
 
-            <tr>
-
-                {% for week in month_calendar%}
-                        {% for day in week%}
-                            {% if day is not 0 %}
-                                {{day}}
-                            {% endif %}
+            
+            {% for week in month_calendar%}
+                <tr>
+                    
+                    {% for day in week%}
+                    <td>
+                        {% if day is not 0 %}
+                        {{day}}
+                        {% else %}
+                            *    
+                        {% endif %}
+                    </td>
                         {% endfor %}
-                {% endfor %}
-            </tr>
+                        <br>
+                </tr>
+            {% endfor %}
         </table>
     </div>
 {% endblock page-output %}
