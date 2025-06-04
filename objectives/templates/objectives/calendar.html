@@ -60,15 +60,17 @@
                 <tr>
                     
                     {% for day in week%}
-                    <td>
-                        {% if day is not 0 %}
-                        
-                        {{day}}
-                        {% else %}
-                            *    
-                        {% endif %}
-                    </td>
-                        {% endfor %}
+                        <td>
+                            {% if day is not 0 %}
+                                <a href="/{{year}}/{{month}}/{{day}}">
+                                    
+                                    {{day}}
+                                </a>
+                            {% else %}
+                                *    
+                            {% endif %}
+                        </td>
+                    {% endfor %}
                         <br>
                 </tr>
             {% endfor %}
