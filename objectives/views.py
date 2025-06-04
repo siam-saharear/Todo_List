@@ -9,11 +9,16 @@ from .forms import *
 from .models import *
 
 # Create your views here.
-def base_func(request):
-    today = now().date()
-    individual_tasks = Task.objects.filter(category=None).filter(creation_time__date = today)
-    categories = Category.objects.filter(creation_time__date = today)
-
+def base_func(request,year=None, month=None, day=None):
+    if year==None and month==None and day==None:
+        date = now().date()
+    else:
+        date = f"{year}-{month}-{day}"
+    print(date)
+        
+    individual_tasks = Task.objects.filter(category=None).filter(creation_time__date = date)
+    categories = Category.objects.filter(creation_time__date = date)
+        
     categorized_tasks = []
     for category in categories:
         tasks = None
