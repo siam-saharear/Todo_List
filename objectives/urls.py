@@ -3,6 +3,7 @@ from . import views
 
 urlpatterns = [
     path("", views.base_func, name="base"),
+    path("<int:year>/<int:month>/<int:day>", views.base_func, name="base_with_date"),
     
     path("task_creation/<uuid:category_uuid>", views.create_task, name="task_creation"),
     path("task_creation/", views.create_task, name="task_creation"),
